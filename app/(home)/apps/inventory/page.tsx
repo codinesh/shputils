@@ -1,7 +1,9 @@
 'use client'
 import { SupabaseClient } from '@supabase/supabase-js'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Panel from '../../../../src/components/Panel'
+
 interface IInventory {
   id: string
   name: string
@@ -71,15 +73,17 @@ const Page = () => {
                         setIsOpen(true)
                       }}
                       key={item.id}
-                      className='bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100'>
+                      className='bg-white  border-b transition duration-300 ease-in-out hover:bg-gray-100'>
                       <td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900'>
-                        <div className='flex'>
-                          <img
-                            className='w-12 h-12'
-                            src={item.picture_url ?? 'package.png'}
+                        <div className='flex items-center'>
+                          <Image
+                            className='object-cover  border rounded-md'
+                            width={60}
+                            height={60}
+                            src={item.picture_url ?? '/thumbnail.jpg'}
                             alt={'Image'}
                           />
-                          {item.name}
+                          <span className='text-md ml-2'>{item.name}</span>
                         </div>
                       </td>
                       <td className='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'>
